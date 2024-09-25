@@ -8,6 +8,8 @@
 [sub_resource type="Environment" id="Environment_g3bud"]
 background_mode = 1
 background_color = Color(0.411765, 0.756863, 0.909804, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.652179, 0.65218, 0.652179, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vd2np"]
 render_priority = 0
@@ -123,7 +125,8 @@ debug_shape_thickness = 5
 environment = SubResource("Environment_g3bud")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866026, 0.5, 0.5, -0.433013, 0.75, 0, 6, 0)
+transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866026, 0.5, 0.5, -0.433013, 0.75, -0.170104, 6.19642, 0.294629)
+light_energy = 0.25
 shadow_enabled = true
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="."]
@@ -325,11 +328,11 @@ material = SubResource("StandardMaterial3D_xd770")
 size = Vector2i(800, 1200)
 
 [node name="camera" type="Camera3D" parent="Mirror/viewport"]
-transform = Transform3D(-0.897258, 0, -0.441506, 0, 1, 0, 0.441506, 0, -0.897258, -1.21973, 4.32359, -8.86524)
+transform = Transform3D(-0.897258, 0, -0.441506, 0, 1, 0, 0.441506, 0, -0.897258, -1.21973, 4.32359, -8.86525)
 projection = 2
 size = 3.0
-frustum_offset = Vector2(0.516263, -1.61181)
-near = 5.09348
+frustum_offset = Vector2(0.516261, -1.61181)
+near = 5.09349
 far = 10000.0
 
 [node name="RayCast3D2" type="RayCast3D" parent="Mirror/viewport/camera"]

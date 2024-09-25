@@ -13,14 +13,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
   Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 
-func _unhandled_input(event):
+func _unhandled_input(event:InputEvent):
   if event is InputEventMouseMotion and Input.mouse_mode==Input.MOUSE_MODE_CAPTURED:
     rotate_y(-event.relative.x * .005)
     camera.rotate_x(-event.relative.y * .005)
     camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+  if event is InputEventMouseButton and event.is_action_pressed('capture') and Input.mouse_mode!=Input.MOUSE_MODE_CAPTURED:
+    Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_key_input(event):
-  if Input.is_action_just_pressed("ui_cancel"):
+  if Input.is_action_just_pressed("capture"):
     if Input.mouse_mode==Input.MOUSE_MODE_CAPTURED:
       Input.mouse_mode=Input.MOUSE_MODE_VISIBLE
     else:
@@ -32,7 +34,7 @@ func _physics_process(delta):
     velocity.y -= gravity * delta
 
   # Handle Jump.
-  if Input.is_action_just_pressed("ui_accept") and is_on_floor() and Input.mouse_mode==Input.MOUSE_MODE_CAPTURED:
+  if Input.is_action_just_pressed("jump") and is_on_floor() and Input.mouse_mode==Input.MOUSE_MODE_CAPTURED:
     velocity.y += JUMP_VELOCITY
 
   # Get the input direction and handle the movement/deceleration.
